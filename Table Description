@@ -1,0 +1,94 @@
++-------------------+
+| Tables_in_CareAll |
++-------------------+
+| approval_applied  | In this table approval required for confirmation are stored.
+| old_people        | In this table information about old people is stored.
+| review_old        | In this table reviews of old people are stored.
+| review_young      | In this table reviews of young people are stored.
+| young_old         | In this table id of young and old people are store who have previously worked with each other.
+| young_people      | In this table information about young people is stored.
++-------------------+
+6 rows in set (0.00 sec)
+
+mysql> describe young_people;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| firstname  | varchar(30)  | NO   |     | NULL    |                |
+| lastname   | varchar(30)  | NO   |     | NULL    |                |
+| email      | varchar(60)  | NO   | UNI | NULL    |                |
+| dob        | date         | NO   |     | NULL    |                |
+| about      | varchar(250) | NO   |     | NULL    |                |
+| address    | varchar(250) | NO   |     | NULL    |                |
+| idproof    | varchar(12)  | NO   | UNI | NULL    |                |
+| contact_no | varchar(10)  | NO   | UNI | NULL    |                |
+| notify     | varchar(200) | YES  |     | NULL    |                |
+| password   | varchar(12)  | NO   |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+11 rows in set (0.00 sec)
+
+
+mysql> describe old_people;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| firstname  | varchar(30)  | NO   |     | NULL    |                |
+| lastname   | varchar(30)  | NO   |     | NULL    |                |
+| email      | varchar(60)  | NO   | UNI | NULL    |                |
+| dob        | date         | NO   |     | NULL    |                |
+| about      | varchar(250) | NO   |     | NULL    |                |
+| address    | varchar(250) | NO   |     | NULL    |                |
+| idproof    | varchar(12)  | NO   | UNI | NULL    |                |
+| money      | int(5)       | NO   |     | NULL    |                |
+| contact_no | varchar(10)  | NO   | UNI | NULL    |                |
+| care_taken | int(11)      | YES  | MUL | NULL    |                |
+| password   | varchar(12)  | NO   |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+12 rows in set (0.00 sec)
+
+
+mysql> describe review_young;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| review | varchar(250) | NO   |     | NULL    |                |
+| rating | int(1)       | NO   |     | NULL    |                |
+| y_id   | int(11)      | NO   | MUL | NULL    |                |
+| o_id   | int(11)      | YES  | MUL | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> describe review_old;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| review | varchar(250) | NO   |     | NULL    |                |
+| rating | int(1)       | NO   |     | NULL    |                |
+| o_id   | int(11)      | NO   | MUL | NULL    |                |
+| y_id   | int(11)      | YES  | MUL | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> describe young_old; 
++-------+---------+------+-----+---------+----------------+
+| Field | Type    | Null | Key | Default | Extra          |
++-------+---------+------+-----+---------+----------------+
+| id    | int(11) | NO   | PRI | NULL    | auto_increment |
+| y_id  | int(11) | NO   | MUL | NULL    |                |
+| o_id  | int(11) | NO   | MUL | NULL    |                |
++-------+---------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> describe approval_applied; 
++-------+---------+------+-----+---------+----------------+
+| Field | Type    | Null | Key | Default | Extra          |
++-------+---------+------+-----+---------+----------------+
+| id    | int(11) | NO   | PRI | NULL    | auto_increment |
+| y_id  | int(11) | NO   | MUL | NULL    |                |
+| o_id  | int(11) | NO   | MUL | NULL    |                |
++-------+---------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
